@@ -59,9 +59,9 @@ class Payload:
 class DAC8568:
   """Implementation for dac8568"""
 
-  def __init__(self, spi, sync):
+  def __init__(self, spi, cs):
     self.spi = spi
-    self.sync = sync
+    self.cs = cs
   
   def use_internal_reference(self):
     payload:Payload = Payload()
@@ -108,10 +108,10 @@ class DAC8568:
     return voltage
 
   def __write__(self, payload):
-    self.sync.off()
+    self.cs.off()
     result = self.spi.write(payload.to_bytes())
     print(result)
-    self.sync.on()
+    self.cs.on()
 
 if __name__ == '__main__':
   payload = Payload()

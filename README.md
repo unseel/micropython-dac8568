@@ -16,12 +16,12 @@ DAC8568是一个8通道、16位精度的数模转换器，兼容`SPI`, `QSPI`, `
 from machine import SPI, Pin
 import dac8568
 
-# define spi/sync, esp32-s for example
+# define spi/cs, esp32-s for example
 spi = SPI(2, 10000)
-sync = machine.Pin(5, Pin.OUT)
+cs = machine.Pin(5, Pin.OUT)
 
 # init dac8568
-dac8568_ = dac8568.DAC8568(spi, sync)
+dac8568_ = dac8568.DAC8568(spi, cs)
 
 # use internal reference
 dac8568_.use_internal_reference()
